@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../static/landingjs.js" defer></script>
+
+    <link rel="icon" type="icon/image" href="../static/img/logo.jpg">
+    <link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/landingcss.css">
+    <link rel="stylesheet" href="../static/mediacss.css">
+
+    <title>Thebotbrokers</title>
+</head>
+<body>
+    <div>
+
+        <section id="home">
+            <div class="langing-page-con">
+                <div class="top-menu">
+                    <div class="menu-logo">
+                        <a href="index.html">
+                            <img src="../static/img/logo.jpg" alt="logo" loading="lazy">
+                            <h3>.</h3>
+                        </a>
+                    </div>
+                    <div class="content-menu">
+                        <a href="index.html">home</a>
+                    </div>
+                    <div class="log-menu">
+                        <a href="login.html" id="sample">login</a>
+                        <a href="signup.html" class="log-menu-active">sign up</a>
+                    </div>
+                    <div class="menu-bar">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+                <div class="media-menu">
+                    <div class="media-menu-con">
+                        <a href="index.html" class="bottom-effect">home</a>
+                        <a href="login.html">login</a>
+                        <a href="signup.html" class="log-menu-active">sign up</a>
+                    </div>
+                </div>
+
+                <div class="home-intro-auth">
+                    <div class="home-intro-box-auth">
+                        <h1>Thebotbrokers</h1>
+                        <div>
+                            <p>
+                                Thebotbrokers is a modern financial platform that helps individuals grow 
+                                their money, manage digital transactions, and invest securely from anywhere in the world.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="home-intro-box-auth">
+                        <div class="home-intro-icon">
+                            <h3>Get Started with registraton</h3>
+                        </div>
+                        <div class="form-box">
+                            <div class="info-m">
+                                <h5>Info</h5>
+                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur optio tempore iste?</p>
+                            </div>
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div>
+                                    <div class="form-text">
+                                        <p>Username</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="text" placeholder="Enter Your Username" name="username">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-text">
+                                        <p>First Name</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="text" placeholder="Enter Your First Name" name="firstname">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-text">
+                                        <p>Last Name</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="text" placeholder="Enter Your Last Name" name="lastname">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-text">
+                                        <p>Mail</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="email" placeholder="Enter Your Mail" name="mail">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-text">
+                                        <p>Password</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="password" placeholder="Create Password" name="password1" class="pass">
+                                        <i class="fa fa-eye toggle"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-text">
+                                        <p>Confirm Password</p>
+                                    </div>
+                                    <div class="form-div">
+                                        <input type="password" placeholder="Confirm Your Password" name="password2" class="pass">
+                                        <i class="fa fa-eye toggle"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button>sign up</button>
+                                </div>
+                                <div class="form-ex">
+                                    <p class="ligh-p">Have an accout <a href="login.html">Log in Here</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="home-get-started-title">
+                <h3>Get Started Today</h3>
+            </div>
+            <div class="home-get-started-box">
+                <div class="home-get-started-text">
+                    <p>
+                        We prond secure to divencing and accourity and bia merts.
+                    </p>
+                </div>
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                    <!-- <a href="samples.html" class="achor-active"> View Samples</a> -->
+                    <a href="login.html" class="achor-light"> Get Started</a>
+                </div>
+            </div>
+            <div class="home-end">
+                <div class="home-end-box">
+                    <p>
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script> 
+                        Thebotbrokers. All rights reserved
+                    </p>
+                </div>
+                <div class="home-end-box">
+                    <p>
+                        support@thebotbrokers.com | +1 000 039 3453
+                    </p>
+                </div>
+            </div>
+        </section>
+    
+    </div>
+</body>
+</html>

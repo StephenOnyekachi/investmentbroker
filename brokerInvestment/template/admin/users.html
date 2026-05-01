@@ -1,0 +1,124 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.is_superuser %}
+                        <i style="color: green;">admin</i>
+                        {% else %}
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <h4>dashboard</h4>
+                    </div>
+                    <div>
+                        <a href="{% url 'logout' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-power-off" style="text-transform: capitalize;font-weight: lighter;">
+                                log out
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="balance" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <div class="balane-card">
+                            <p>investments</p>
+                            <div style="display: flex;">
+                                <i class="fa fa-cubes"> {{ plan.count }}</i>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <a href="{% url 'newInvestment' %}" class="achor-blue">
+                                view investments
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+                    <div>
+                        <div class="balane-card">
+                            <p>account details</p>
+                            <div style="display: flex;">
+                                <i class="fa fa-bank"> {{ account.count }}</i>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <a href="{% url 'newAccount' %}" class="achor-blue">
+                                view accounts
+                            </a>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        <p>total users</p>
+                        <div style="display: flex;">
+                            {% if users %}
+                            <i class="fa fa-users"> {{ users.count }}</i>
+                            {% else %}
+                            <i class="fa fa-users"> no users yet</i>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="">
+                        <form action="{% url 'search' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-search">
+                                <input type="text" placeholder="Search" name="query">
+                                <button class="search-btn">search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        {% if users %}
+                        {% for user in users %}
+                        <div class="infos">
+                            <h3>{{ user.user.first_name }} {{ user.user.last_name }}</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ user.balance|intcomma }}</i>
+                            </h1>
+                            <div style="margin-top: 10px;">
+                                <a href="{% url 'viewUser' user.user.id %}" class="achor-blue">
+                                    view profile
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}

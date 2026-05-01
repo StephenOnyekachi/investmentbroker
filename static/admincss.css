@@ -1,0 +1,355 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Times New Roman', serif; */
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* for scroll animation */
+.scroll-element { 
+  opacity: 0; 
+  transform: translateY(50px); 
+  transition: all 0.6s ease-out; 
+} 
+.scroll-element.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+.slidetop{
+  transform: translateY(15px);
+  transition: all 1.5s;
+  opacity: 0;}
+  .slidetop.active{
+    transform: translateX(0);
+    border: none;
+    opacity: 1;
+}
+.slideleft{
+  transform: translateX(-15px);
+  transition: all 1.5s;
+  opacity: 0;}
+  .slideleft.active{
+    transform: translateX(0);
+    border: none;
+    opacity: 1;
+}
+.zoom-in { 
+  transform: scale(0.8); /* start smaller */ 
+  transition: all 1.5s ease; /* smooth zoom */ 
+  opacity: 0; /* hidden initially */ } 
+  .zoom-in.active { 
+    transform: scale(1); /* zoom to normal size */ 
+    border: none; /* optional, same as your code */ 
+    opacity: 1; /* fully visible */ 
+}
+.bottom-effect a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 20px 15px;
+    color: white;
+    font-weight: bold;
+}
+.bottom-effect {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 20px 15px;
+    color: white;
+    font-weight: bold;
+}
+.bottom-effect::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background-color: white; /* Deep pink or any color you like */
+    transition: width 0.4s ease;
+}
+.bottom-effect:hover {
+    transform: translateY(-5px); /* Optional float effect */
+    /* width: 100%; */
+}
+.bottom-effect:hover::after {
+    width: 100%; /* Expands border from left to right */
+}
+
+/* for achor buttons */
+.achor-active {
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    background-color: rgb(5, 176, 5);
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.achor-blue {
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    background-color: rgb(0, 19, 83);
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+.achor-light {
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    background-color: inherit;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: rgb(0, 19, 83);
+    text-decoration: none;
+}
+
+/* for landing page containner */
+.langing-page-con {
+    /* position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    padding: 0px 50px;
+    z-index: 100; */
+        
+    background-image: 
+        linear-gradient(
+            135deg,
+            rgba(30, 30, 30, 0.864), /* Hot pink overlay */
+            rgba(21, 21, 21, 0.925) /* Cyan overlay */
+            ),
+        /* url('http://127.0.0.1:5500/static/img/me4.jpg'); Replace with your actual image path  */
+        url('../static/img/me4.jpg')
+    ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+}
+
+/* for top-menu */
+.top-menu {
+    position: sticky;
+    top: 0px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    padding: 0px 50px;
+    z-index: 100;
+    /* color: white; */
+    /* background:  */
+        /* linear-gradient( */
+            /* 135deg, */
+            /* rgb(3, 92, 235),   Hot pink overlay */
+            /* rgb(85, 170, 255)    Cyan overlay */
+        /* ) */
+    /* ; */
+}
+.top-menu.active {
+    background-image: 
+        linear-gradient(
+            135deg,
+            rgb(30, 30, 30),
+            rgb(21, 21, 21)
+        )
+    ;
+    border-bottom: 5px solid rgb(5, 176, 5);
+    position: fixed;
+    width: 100%;
+}
+/* .mymenu.active .my-nav a {
+    text-decoration: none;
+    color: var(--sharp);
+} */
+
+/* for menu logo */
+.menu-logo {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.menu-logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.menu-logo img {
+    width: 150px;
+}
+.menu-logo h3 {
+    font-weight: bold;
+    font-size: 3.5rem;
+    margin-left: 10px;
+    /* color: rgb(255, 187, 0); */
+    color: rgb(5, 176, 5);
+}
+
+/* for menu-bar */
+.menu-bar {
+    display: none;
+    align-items: center;
+    cursor: pointer;
+}
+.menu-bar i {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 5px 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+/* for media-menu */
+.media-menu {
+    display: none;
+}
+
+/* for paths */
+.paths {
+    width: 100%;
+    display: flex;
+} 
+
+/* for first path */
+.first-path{
+    width: 30%;
+    float: left;
+    left: 0;
+}
+.first-menu {
+    width: 100%;
+    display: block;
+    position: sticky;
+    top: 80px;
+}
+.first-menu a {
+    width: 100%;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: capitalize;
+    display: block;
+    color: rgb(1, 13, 54);
+    font-weight: bold;
+}
+.first-menu a:hover {
+    color: rgb(37, 37, 37);
+    background-color: rgb(249, 243, 243);
+    font-weight: lighter;
+}
+.first-menu .active {
+    color: rgb(37, 37, 37);
+    background-color: rgb(249, 243, 243);
+    font-weight: lighter;
+}
+
+/* for second path */
+.second-path{
+    width: 70%;
+    float: right;
+    right: 0;
+}
+
+/* for sample */
+.home-sample-title {
+    padding: 20px 50px;
+    margin: 20px 50px;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 70px;
+    width: 100%;
+    margin-left: 0px;
+    background-color: white;
+    z-index: 90;
+}
+.home-sample-title h3 {
+    text-align: center;
+    color: rgb(1, 13, 54);
+    font-size: 1.5rem;
+}
+.home-sample-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.home-sample-card {
+    background-color: rgb(231, 231, 231);
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 0px;
+    margin: 15px;
+    display: block;
+    width: 100%;
+    display: flex;
+}
+.home-sample-head {
+    width: 30%;
+}
+.home-sample-head i {
+    color: rgb(5, 176, 5);
+    font-size: 2rem;
+    padding: 5px 5px;
+}
+.home-sample-head img {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top-left-radius: 10px;
+    /* border-bottom-left-radius: 10px; */
+    height: auto;
+}
+.home-sample-text {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    padding: 50px 50px;
+}
+.home-sample-text h3 {
+    color: rgb(1, 13, 54);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.home-sample-text p {
+    color: rgb(0, 19, 83);
+    font-size: 1rem;
+    padding: 10px 0px;
+}
+
+/* for card form */
+.card-form {
+    width: 100%;
+    padding: 10px 10px;
+}
+.card-form form input {
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+.card-form form textarea {
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    height: 100px;
+}
+.card-form form p {
+    padding: 10px 0px;
+}

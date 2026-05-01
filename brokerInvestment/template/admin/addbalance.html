@@ -1,0 +1,87 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ request.user }}
+                    <small style="font-size: 10px;">
+                        {% if request.user.is_superuser %}
+                        <i style="color: green;">admin</i>
+                        {% else %}
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="balance">
+                <div class="balane-card">
+                    <div class="infos">
+                        <h3>{{ wallet.user.first_name }} {{ wallet.user.last_name }}</h3>
+                        <h1>
+                            <i class="fa fa-dollar"> {{ wallet.balance|intcomma }}</i>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'viewUser' wallet.user.id %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> profile</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>balance</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="home-intro-auth">
+                        <div class="home-intro-box-auth">
+                            <div class="form-box">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div>
+                                        <div class="form-text" style=" padding: 5px 0px;">
+                                            <p>Amount</p>
+                                            <i style="color: #7b7b7b;">
+                                                Increase {{ wallet.user.first_name }} {{ wallet.user.last_name }} Balance
+                                            </i>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="number" placeholder="Amount" name="amount">
+                                            <i class="fa fa-dollar"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>Increase Balance</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

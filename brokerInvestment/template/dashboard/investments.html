@@ -1,0 +1,67 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'dashboard' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>investments</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        {% if plans %}
+                        {% for plan in plans %}
+                        <div class="infos">
+                            <h3>{{ plan.name }}</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ plan.amount|intcomma }}</i>
+                            </h1>
+                            <p>Duration <b>{{ plan.duration }}</b> days, with <b>{{ plan.interest }}</b> pacent daily income</p>
+                            <div style="margin-top: 10px;">
+                                <a href="{% url 'invest' plan.id %}" class="achor-blue">
+                                    invest now
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

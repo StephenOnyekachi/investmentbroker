@@ -1,0 +1,129 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'dashboard' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>KYC</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    {% if profile.kyc == False %}
+                    <div class="balane-card">
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                            <p>complet your KYC</p>
+                        </div>
+                    </div>
+                    <div class="home-intro-auth">
+                        <div class="home-intro-box-auth">
+                            <div class="form-box">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Country</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="text" placeholder="Your Country" name="country">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Phone number</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="text" placeholder="Your Phone Number" name="phone">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Address</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <textarea name="address" placeholder="Your Address" id=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Date of birth</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="date" name="date">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Gender</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <select name="gender">
+                                                <option value="">Selete Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="custom">Custom</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>verify informations</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="balane-card">
+                        <div class="infos">
+                            <h3>Message</h3>
+                            <p>
+                                Dear {{ profile.user.first_name }} {{ profile.user.last_name }} 
+                                your KYC have been verified
+                            </p>
+                            <i class="fa fa-check" style="text-align: center;"></i>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

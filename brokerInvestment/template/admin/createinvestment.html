@@ -1,0 +1,131 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ request.user }}
+                    <small style="font-size: 10px;">
+                        {% if request.user.is_superuser %}
+                        <i style="color: green;">admin</i>
+                        {% else %}
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'adminPage' %}" style="color: white;margin-right: 10px;">
+                        <a href="{% url 'adminPage' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>investment</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="home-intro-auth">
+                        <div class="home-intro-box-auth">
+                            <div class="form-box">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Name</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="text" placeholder="Name" name="name">
+                                            <i class="fa fa-book"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Price</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="number" placeholder="Price" name="price">
+                                            <i class="fa fa-dollar"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Duration</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="number" placeholder="Duration" name="duration">
+                                            <i class="fa fa-arrow-up"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Pacentage</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="text" placeholder="Pacentage" name="pacent">
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>creat investment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        {% if investments %}
+                        {% for investment in investments %}
+                        <div class="infos">
+                            <h3>{{ investment.name }}</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ investment.amount|intcomma }}</i>
+                            </h1>
+                            <p>
+                                Duration <b>{{ investment.duration }}</b> 
+                                days, with <b>{{ investment.interest }}</b> pacent daily income
+                            </p>
+                            <div style="margin-top: 10px;">
+                                <a href="{% url 'deleteInvestment' investment.id %}" class="achor-red">
+                                    delete
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ wallet.user.first_name }} {{ wallet.user.last_name }}</p>
+                            <p>does not have any investment</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

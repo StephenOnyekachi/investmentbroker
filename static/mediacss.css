@@ -1,0 +1,212 @@
+
+@media (max-width: 999px) {
+    .top-menu {
+        padding: 0px 10px;
+    }
+    /* for paths */
+    .paths {
+        width: 100%;
+        display: block;
+    } 
+    /* for first path */
+    .first-path{
+       width: 0%;
+        float: left;
+        left: 0;
+    }
+    .first-menu, .first-menu a {
+        display: none;
+    }
+    .first-menu {
+        position: sticky;
+        top: 0px;
+        display: flex;
+        justify-content: space-between;
+        text-transform: capitalize;
+        padding: 0px 10px;
+        z-index: 100;
+    }
+    .first-menu.active {
+        background-image: 
+            linear-gradient(
+                135deg,
+                rgb(30, 30, 30),
+                rgb(21, 21, 21)
+            )
+        ;
+        border-bottom: 5px solid rgb(5, 176, 5);
+        position: fixed;
+        width: 100%;
+    }
+    .log-menu, .content-menu {
+        display: none;
+    }
+    /* for menu-bar */
+    .menu-bar {
+        display: flex;
+        position: relative;
+        right: 5px;
+    }
+    
+    /* for second path */
+    .second-path{
+        width: 100%;
+        float: none;
+    }
+    /* for media-menu */
+    .media-menu {
+        position: fixed;
+        top: 80px;
+        z-index: 100;
+        display: block;
+        height: 100vh;
+        width: 60%;
+        background-color: white;
+        left: 0;
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    .media-menu.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    .media-menu-con {
+        display: block;
+        width: 100%;
+    }
+    .media-menu-con a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        text-transform: capitalize;
+        color: rgb(0, 19, 83);
+        text-decoration: none;
+        font-size: 1.2rem;
+        /* font-weight: bold; */
+    }
+    .media-menu-con a:hover {
+        color: rgb(37, 37, 37);
+        background-color: rgb(249, 243, 243);
+        font-weight: lighter;
+    }
+    .media-menu-con .active {
+        color: rgb(37, 37, 37);
+        background-color: rgb(249, 243, 243);
+        font-weight: lighter;
+    }
+    /* for home-intro */
+    .home-intro, .home-intro-auth, .home-about {
+        padding: 20px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+        width: 100%;
+    }
+    .home-intro-box, .home-intro-box-auth, .home-about-box, .home-about-box, .home-why-us-box {
+        width: 100%;
+        padding: 20px 10px;
+    }
+    .home-intro-box img, .home-about-box img, .home-about-box img {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        justify-self: center;
+    }
+    .home-intro-box h1, .home-intro-box-auth h1 {
+        font-size: 2.8rem;
+        padding: 10px 0px;
+    }
+    .home-intro-icon {
+        padding: 20px 10px;
+        margin: 20px 0px;
+        /* display: block; */
+    }
+    
+    .home-why-us-card {
+        width: 100%;
+        height: 300px;
+        text-align: center;
+    }
+    .home-why-us-head {
+        justify-content: left;
+    }
+    .home-why-us-head i {
+        margin-right: 10px;
+        padding: 10px;
+    }
+    .home-why-us-head h3 {
+        text-align: left;
+    }
+    .home-why-us-text p {
+        text-align: left;
+        padding: 5px;
+    }
+
+    .home-our-user-card {
+        width: 100%;
+        display: block;
+    }
+
+    .home-contact-icon {
+        padding: 20px 20px;
+        margin: 20px 20px;
+        justify-content: space-between;
+    }
+    .home-contact {
+        height: auto;
+        padding: 10px 20px;
+    }
+    .home-contact-box {
+        width: 100%;
+        padding: 10px 0px;
+    }
+    .home-contact-box img {
+        float: none;
+        width: 100%;
+    }
+    .home-contact-box h3 {
+        font-size: 1.2rem;
+    }
+
+    .home-our-user-card {
+        width: 100%;
+        display: block;
+    }
+
+    .home-sample-card {
+        flex-wrap: wrap;
+    }
+    .home-sample-head, .home-sample-text {
+        width: 100%;
+    }
+    .home-sample-head img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .form-box {
+        margin: 0px 10px;
+    }
+    .form-flex {
+        display: block;
+        gap: 10px;
+    }
+    .form-flex-box {
+        width: 100%;
+    }
+
+    .home-end {
+        display: block;
+    }
+    .home-end-box {
+        width: 100%;
+    }
+}

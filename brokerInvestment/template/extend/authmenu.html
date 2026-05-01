@@ -1,0 +1,36 @@
+
+{% load static %}
+
+<section>
+    <div class="top-menu">
+        <div class="menu-logo">
+            <a href="">
+                <img src="{% static './img/logo.jpg' %}" alt="logo" loading="lazy">
+                <h3>.</h3>
+            </a>
+        </div>
+        <div class="content-menu">
+            <a href="{% url 'index' %}">home</a>
+        </div>
+        <div class="log-menu">
+            <a href="{% url 'login' %}" id="sample">login</a>
+            <a href="{% url 'signup' %}" class="log-menu-active">sign up</a>
+        </div>
+        <div class="menu-bar">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+    <div class="media-menu">
+        <div class="media-menu-con">
+            <a href="{% url 'index' %}" class="bottom-effect">home</a>
+            {% if request.path == '/login/' %}
+            {% elif request.path == '/signup/' %}
+            {% else %}
+            <a href="about.html" class="bottom-effect">about</a>
+            <a href="contact.html" class="bottom-effect">contact</a>
+            {% endif %}
+            <a href="{% url 'login' %}">login</a>
+            <a href="{% url 'signup' %}" class="log-menu-active">sign up</a>
+        </div>
+    </div>
+</section>

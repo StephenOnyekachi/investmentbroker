@@ -1,0 +1,125 @@
+
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Status</title>
+    <link rel="icon" href="{% static './images/logo.png' %}">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <link rel="stylesheet" href="{% static './font-awesome/css/font-awesome.min.css' %}">
+    <style>
+        .varify-cover {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .varify-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .varify-card .box {
+            margin-bottom: 20px;
+        }
+        .varify-card .box i {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .varify-card .box p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .varify-card .box h3 {
+            margin: 5px 0;
+            font-size: 22px;
+            color: #000;
+            text-transform: capitalize;
+        }
+        .varify-card .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .s-bg { background: #4CAF50; color: #fff; }      /* Success */
+        .w-bg { background: orange; color: #fff; }       /* Warning */
+        .e-bg { background: red; color: #fff; }          /* Error */
+        .s-logo { color: green; }                         /* Success Icon */
+        .w-logo { color: orange; }                        /* Warning Icon */
+        .e-logo { color: red; }                           /* Error Icon */
+    </style>
+</head>
+<body>
+    {% if status %}
+    <div class="varify-cover">
+        <div class="varify-card">
+            <div class="box">
+                {% if status == 'success' %}
+                    <i class="fa fa-check s-logo"></i>
+                    <p>Transaction of</p>
+                    <h3><i class="fa fa-dollar"></i> {{ amount|intcomma }}</h3>
+                    <p>to</p>
+                    <h3>{{ reciever.user.first_name }} {{ reciever.user.last_name }}</h3>
+                    <p>was successful</p>
+                {% elif status == 'pending' %}
+                    <i class="fa fa-check s-logo"></i>
+                    <h3>{{ reciever.first_name }} {{ reciever.last_name }}</h3>
+                    <p>Your withdraw of</p>
+                    <h3><i class="fa fa-dollar"></i> {{ amount|intcomma }}</h3>
+                    <p>is on pending</p>
+                    <p>it is under review</p>
+                {% elif status == 'warning' %}
+                    <i class="fa fa-exclamation-triangle w-logo"></i>
+                    <p>{{ message }}</p>
+                {% elif status == 'error' %}
+                    <i class="fa fa-times e-logo"></i>
+                    <p>{{ message }}</p>
+                {% endif %}
+            </div>
+            <div class="box">
+                {% if status == 'success' or 'pending' %}
+                    <a href="{% url 'dashboard'  %}" class="button s-bg">Complete</a>
+                {% elif status == 'warning' %}
+                    <a href="{% url 'investment' %}" class="button w-bg">Back</a>
+                {% elif status == 'error' %}
+                    <a href="{% url 'investment' %}" class="button e-bg">Back</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% elif loan %}
+    <div class="varify-cover">
+        <div class="varify-card">
+            <div class="box">
+                {% if loan_status == 'pending' %}
+                    <i class="fa fa-check s-logo"></i>
+                    <h3>{{ loanner.first_name }} {{ loanner.last_name }}</h3>
+                    <p>Your Loan of</p>
+                    <h3><i class="fa fa-dollar"></i> {{ amount|intcomma }}</h3>
+                    <p>was successful</p>
+                    <p>and is under going review</p>
+                {% endif %}
+            </div>
+            <div class="box">
+                {% if loan_status == 'pending' %}
+                    <a href="{% url 'dashboard' %}" class="button s-bg">Complete</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>

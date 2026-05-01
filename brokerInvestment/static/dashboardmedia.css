@@ -1,0 +1,141 @@
+
+@media (max-width: 999px) {
+    /* for menu-bar */
+    .menu-bar {
+        display: flex;
+        position: relative;
+        right: 5px;
+    }
+
+    /* for media-menu */
+    .media-menu {
+        position: fixed;
+        top: 80px;
+        z-index: 100;
+        display: block;
+        height: 100vh;
+        width: 60%;
+        background-color: white;
+        left: 0;
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    .media-menu.active {
+        display: block;
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    .media-menu-con {
+        display: block;
+        width: 100%;
+    }
+    .media-menu-con a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        text-transform: capitalize;
+        color: rgb(0, 19, 83);
+        text-decoration: none;
+        font-size: 1.2rem;
+        /* font-weight: bold; */
+    }
+    .media-menu-con a:hover {
+        color: rgb(37, 37, 37);
+        background-color: rgb(249, 243, 243);
+        font-weight: lighter;
+    }
+    .media-menu-con .active {
+        color: rgb(37, 37, 37);
+        background-color: rgb(249, 243, 243);
+        font-weight: lighter;
+    }
+
+    /* for form input */
+    .form-box {
+        margin: 0px 10px;
+    }
+    .form-flex {
+        display: block;
+        gap: 10px;
+    }
+    .form-flex-box {
+        width: 100%;
+    }
+    .search-btn {
+        width: 30%;
+    }
+
+    .home-end {
+        display: block;
+    }
+    .home-end-box {
+        width: 100%;
+    }
+
+    .menu-name h3 {
+        font-size: 14px;
+    }
+
+    /* for body box */
+    .body-box {
+        min-height: 100vh;
+    }
+
+    /* for body box card */
+    .body-box-card {
+        gap: none;
+        padding:1px;
+        justify-content: none;
+    }
+    .body-box-card a {
+        padding: 1px;
+    }
+
+    /* for card width */
+    .card-width {
+        padding: 10px;
+    }
+
+    /* for card */
+    .card {
+        width: 73px;
+        padding: 10px;
+        text-align: center;
+    }
+    .card i {
+        color: var(--color-l);
+        font-weight: lighter;
+        font-size: 1.3rem;
+        padding: 2px 0px;
+    }
+    .card p {
+        color: var(--color-l);
+        font-weight: lighter;
+        font-size: 12px;
+        padding: 2px 0px;
+    }
+
+    /* for coin box */
+    .coin-box-con i {
+        font-size: 14px;
+        padding: 2px;
+    }
+    .coin-box-con p {
+        font-size: 14px;
+        padding: 2px 5px;
+    }
+
+    /* for balance */
+    .balance {
+        padding: 6px;
+    }
+    .balane-card {
+        padding: 6px;
+    }
+
+    /* for infos */
+    .infos h1 i {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,40 @@
+
+{% load static %}
+
+<section>
+    <div class="home-get-started-title">
+        <h3>Get Started Today</h3>
+    </div>
+    <div class="home-get-started-box">
+        <div class="home-get-started-text">
+            <p>
+                We prond secure to divencing and accourity and bia merts.
+            </p>
+        </div>
+        {% if request.path == '/login/' %}
+        {% elif request.path == '/signup/' %}
+        {% else %}
+        <div style="margin-top: 20px; margin-bottom: 20px;">
+            <!-- <a href="samples.html" class="achor-active"> View Samples</a> -->
+            <a href="{% url 'login' %}" class="achor-light"> Get Started</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="home-end">
+        <div class="home-end-box">
+            <p>
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> 
+                Thebotbrokers. All rights reserved
+            </p>
+        </div>
+        <div class="home-end-box">
+            <p>
+                support@thebotbrokers.com | +1 000 039 3453
+            </p>
+        </div>
+    </div>
+</section>
+

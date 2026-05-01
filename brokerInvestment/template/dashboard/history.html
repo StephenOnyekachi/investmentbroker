@@ -1,0 +1,120 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'dashboard' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>investments</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card" style="display: flex; justify-content: space-between;">
+                        <div class="infos" style="width: 49%;">
+                            <h3>active investment</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ active_investment|intcomma }}</i>
+                            </h1>
+                        </div>
+                        <div class="infos" style="width: 49%;">
+                            <h3>total income</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ total_investment|intcomma }}</i>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4>Histories</h4>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        {% if investment %}
+                        {% for investments in investment %}
+                        <div class="infos">
+                            <h3>{{ investments.investment.name }}</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ investments.investment.amount|intcomma }}</i>
+                            </h1>
+                            <p>
+                                Duration <b>{{ investments.investment.duration }}</b> days, with 
+                                <b>{{ investments.investment.interest }}</b> pacent daily income
+                            </p>
+                            <hr>
+                            <div>
+                                <p>
+                                    days counted <b>{{ investments.days_count }}</b> of {{ investments.due_time }}</b>
+                                </p>
+                                <h3>
+                                    earned
+                                    <br>
+                                    <i class="fa fa-dollar"> {{ investments.amount|intcomma }}</i>
+                                </h3>
+                                <small style="display: flex; gap: 10px;">
+                                    {% if investments.due == False %}
+                                    <i class="fa fa-check" style="font-size: 14px; color: rgb(255, 85, 0);"> active,</i>
+                                    {% else %}
+                                    <i class="fa fa-check-circle" style="font-size: 14px; color: green;"> due,</i>
+                                    {% endif %}
+                                    {% if investments.days_count == investments.investment.duration %}
+                                    <i class="fa fa-check-circle" style="font-size: 14px; color: green;">
+                                        {{ investments.days_count }}
+                                    </i>
+                                    {% else %}
+                                    <i class="fa fa-times" style="font-size: 14px; color: rgb(255, 85, 0);">
+                                        {{ investments.days_count }}
+                                    </i>
+                                    {% endif %}
+                                </small>
+                                <p>
+                                    Invested on <b>{{ investments.invested_on }}</b>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                            <p>no active investment</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'dashboard' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>profile</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        <p>User Name</p>
+                        <h3>{{ profile.user.username }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>First Name</p>
+                        <h3>{{ profile.user.first_name }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>other Names</p>
+                        <h3>{{ profile.user.last_name }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>mail</p>
+                        <h3 style="text-transform: none;">{{ profile.user.email }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>gender</p>
+                        <h3>{{ profile.gender }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>last login</p>
+                        <h3>{{ profile.last_login }}</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>date of birth</p>
+                        <h3>{{ profile.date_birth }}</</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>phone number</p>
+                        <h3>{{ profile.phone_number }}</</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>address</p>
+                        <h3>{{ profile.address }}</</h3>
+                    </div>
+                    <div class="balane-card">
+                        <p>country</p>
+                        <h3>{{ profile.country }}</</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

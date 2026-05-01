@@ -1,0 +1,155 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ request.user }}
+                    <small style="font-size: 10px;">
+                        {% if request.user.is_superuser %}
+                        <i style="color: green;">admin</i>
+                        {% else %}
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'adminPage' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> dashboard</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>user profile</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        <p>Balance</p>
+                        <div style="display: flex;">
+                            <i class="fa fa-dollar"> {{ wallet.balance|intcomma }}</i>
+                        </div>
+                    </div>
+                    <div class="balane-card" style="width: 100%;">
+                        <h4>Actions</h4>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-search">
+                                <!-- <input type="text" placeholder="Search" name="query"> -->
+                                <select name="action"
+                                    style="width: 100%; padding: 6px; border: 0px; outline: none;
+                                    border-top-left-radius: 10px; border-bottom-left-radius: 10px;" 
+                                    required
+                                >
+                                    <option value="">Select Action</option>
+                                    <option value="balance">Increase Balance</option>
+                                    <option value="reset">Set Balance to 0</option>
+                                    <!-- <option value="investment">View Investments</option> -->
+                                    <option value="block">Block User</option>
+                                    <option value="delete">Delete User</option>
+                                </select>
+                                <button class="search-btn" type="submit">Apply</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;justify-content: space-between;padding: 5px;">
+                    <div>
+                        <a href="{% url 'viewUser' wallet.user.id  %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-down" style="text-transform: capitalize;font-weight: bold;"> 
+                                investment history
+                            </i>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{% url 'userhistory' wallet.user.id  %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-down" style="text-transform: capitalize;font-weight: bold;"> 
+                                transaction history
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        {% if history %}
+                        {% for history in history %}
+                        <div class="infos">
+                            {% if history.receiver == user %}
+                                {% if history.status == 'Success' %}
+                                <i class="fa fa-arrow-down" style="text-transform: capitalize; font-size: 14px; color: green;"></i>
+                                {% else %}
+                                <i class="fa fa-arrow-down" style="text-transform: capitalize; font-size: 14px; color: rgb(255, 85, 0);"></i>
+                                {% endif %}
+                                <p class="p s-t">
+                                    deposit from {{ history.sender.first_name }} {{ history.sender.last_name }}
+                                </p>
+                            {% elif history.sender == user %}
+                                {% if history.status == 'Success' %}
+                                <i class="fa fa-arrow-down" style="text-transform: capitalize; font-size: 14px; color: green;"></i>
+                                {% else %}
+                                <i class="fa fa-arrow-down" style="text-transform: capitalize; font-size: 14px; color: rgb(255, 85, 0);"></i>
+                                {% endif %}
+                                <p class="p">
+                                    deposit to {{ history.receiver.first_name }} {{ history.receiver.last_name }}
+                                </p>
+                            {% endif %}
+                            <h3>{{ investments.investment.name }}</h3>
+                            <h1>
+                                <i class="fa fa-dollar"> {{ history.amount|intcomma }}</i>
+                            </h1>
+                            <p>
+                                Description: {{ history.description }}
+                            </p>
+                            <p>
+                                Id No: {{ history.transaction_id }}
+                            </p>
+                            <i style="font-size: 10px;">
+                                {{ history.created_date }} {{ history.created_at }}
+                                {% if history.status == 'Success' %}
+                                <i class="fa fa-check-circle" style="text-transform: capitalize; font-size: 10px; color: green;"> {{ history.status }}</i>
+                                {% else %}
+                                <i class="fa fa-times-circle" style="text-transform: capitalize; font-size: 10px; color: rgb(255, 85, 0);"> {{ history.status }}</i>
+                                <a href="{% url 'approvepayment' history.id %}" class="achor-red">
+                                    approve payment
+                                </a>
+                                {% endif %}
+                            </i>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                            <p>you do not have any transaction history</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}

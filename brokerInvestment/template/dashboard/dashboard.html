@@ -1,0 +1,159 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <h4>Wallet</h4>
+                    </div>
+                    <div>
+                        <a href="{% url 'logout' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-power-off" style="text-transform: capitalize;font-weight: lighter;">
+                                log out
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="balane-card">
+                        <p>Balance</p>
+                        <div style="display: flex;">
+                            <i class="fa fa-dollar"> {{ balance|intcomma }}</i>
+                            <a href=""><small><i class="fa fa-eye"></i></small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body-box-con">
+                <div>
+                    <h4>personal</h4>
+                </div>
+                <div class="body-box-card">
+                    <a href="{% url 'profile' %}">
+                        <div class="card">
+                            <i class="fa fa-user"></i>
+                            <p>Profile</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'setting' %}">
+                        <div class="card">
+                            <i class="fa fa-cog"></i>
+                            <p>Settings</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'kyc' %}">
+                        <div class="card">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            <p>KYC</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'message' %}">
+                        <div class="card">
+                            <i class="fa fa-envelope"></i>
+                            <p>Messages</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="body-box-con">
+                <div>
+                    <h4>Investment</h4>
+                </div>
+                <div class="body-box-card">
+                    <a href="{% url 'coin' %}">
+                        <div class="card">
+                            <i class="fa fa-cubes"></i>
+                            <p>Coins</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'investments' %}">
+                        <div class="card">
+                            <i class="fa fa-arrow-circle-down"></i>
+                            <p>Investments</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'history' %}">
+                        <div class="card">
+                            <i class="fa fa-address-book"></i>
+                            <p>Investment Histories</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'asset' %}">
+                        <div class="card">
+                            <i class="fa fa-dollar"></i>
+                            <p>Asset</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="body-box-con">
+                <div>
+                    <h4>porpular coins</h4>
+                </div>
+                <div class="body-box-card-width">
+                    <div class="card-width">
+                        {% if coins %}
+                            {% for coin in coins %}
+                            <div class="coin-box">
+                                <div class="coin-box-con">
+                                    <i>
+                                        <img src="{{ coin.image }}" alt="{{ coin.name }}" width="20" height="20">
+                                    </i>
+                                    <p>{{ coin.symbol }}</p>
+                                </div>
+                                <div class="coin-box-con">
+                                    <p>$ ${{ coin.current_price | floatformat:2 }}</p>
+                                    <!-- <p>{{ coin.market_cap | floatformat:2 }}</p> -->
+                                    <p>{{ coin.price_change_percentage_24h | floatformat:2 }}%</p>
+                                </div>
+                                <div class="coin-box-con">
+                                    <small> 
+                                        <a href=""
+                                            style="background-color: green;color: white;
+                                            margin-right: 10px;border-radius: 5%;
+                                            padding: 5px 10px; text-decoration: none;"
+                                        >
+                                            Buy
+                                        </a>
+                                    </small>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No coins available now.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

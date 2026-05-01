@@ -1,0 +1,157 @@
+
+{% extends 'extend/base2.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div>
+    
+    <section>
+        <div class="menu-top">
+            <div class="menu-name">
+                <h3>
+                    welcome {{ profile.user.username }}
+                    <small style="font-size: 10px;">
+                        {% if profile.block == False %}
+                        <i style="color: green;">active</i>
+                        {% else %}
+                        <i style="color: rgb(255, 85, 0);">block</i>
+                        {% endif %}
+                        {% if profile.kyc == True %}
+                        <i class="fa fa-check-circle" style="color: green;"></i>
+                        {% endif %}
+                    </small>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="body-box">
+            <div class="body-box-con">
+                <div style="display: flex; align-items: center;justify-content: space-between;">
+                    <div>
+                        <a href="{% url 'asset' %}" style="color: white;margin-right: 10px;">
+                            <i class="fa fa-arrow-left" style="text-transform: capitalize;font-weight: bold;"> asset</i>
+                        </a>
+                    </div>
+                    <div>
+                        <h4>funds</h4>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div class="home-intro-auth">
+                        <div class="home-intro-box-auth">
+                            <div class="form-box">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Amount</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="number" placeholder="Amount" name="amount">
+                                            <i class="fa fa-money"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Address</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <input type="text" placeholder="Address" name="address">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-text">
+                                            <p>Receiver Name</p>
+                                        </div>
+                                        <div class="form-div">
+                                            <select name="name" id="" required>
+                                                <option value="">Selete one of our officials</option>
+                                                {% if users %}
+                                                {% for user in users %}
+                                                <option value="{{user.id}}">{{ user.first_name }} {{ user.last_name }}</option>
+                                                {% endfor %}
+                                                {% endif %}
+                                            </select>
+                                            <i class="fa fa-arrow-left"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button>complet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="balance">
+                    <div style="display: flex; align-items: center;justify-content: space-between;">
+                        <div>
+                            <h4>your payment details</h4>
+                        </div>
+                    </div>
+                    {% if payments %}
+                    <div class="infos">
+                        <h3>{{ account.receiver_name }}</h3>
+                        <p>
+                            {{ account.address_name }}
+                        </p>
+                        <p>
+                            {{ account.address }}
+                        </p>
+                        <div style="margin-top: 10px;">
+                            <a href="{% url 'deleteUserAccount' account.id %}" class="achor-red">
+                                delete
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="balane-card">
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                            <p>you do not have any payment details</p>
+                            <br>
+                            <a href="{% url 'payment' %}" class="achor-green">add account</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="balance">
+                    <div style="display: flex; align-items: center;justify-content: space-between;">
+                        <div>
+                            <h4>management payment details</h4>
+                        </div>
+                    </div>
+                    <div class="balane-card">
+                        {% if account %}
+                        {% for account in account %}
+                        <div class="infos">
+                            <h3>{{ account.receiver_name }}</h3>
+                            <p>
+                                {{ account.address_name }}
+                            </p>
+                            <p>
+                                {{ account.address }}
+                            </p>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="info">
+                            <h3>Information</h3>
+                            <p>Dear {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+                            <p>no payment records available for now</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}

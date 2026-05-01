@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="{% static './dashboardjs.js' %}" defer></script>
+    <!-- <script src="{% static './main.js' %}" defer></script> -->
+
+    <link rel="icon" href="{% static './img/logo.jpg' %}">
+    <link rel="stylesheet" href="{% static './font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static './dashboardcss.css' %}">
+    <link rel="stylesheet" href="{% static './dashboardmedia.css' %}">
+
+    <title>Thebotbrokers</title>
+
+</head>
+<body>
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+<!-- <script src="./static/main.js"></script> -->
+
+</html>

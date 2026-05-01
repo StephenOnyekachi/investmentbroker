@@ -1,0 +1,89 @@
+
+{% load static %}
+{% load humanize %}
+
+<div class="one-quater">
+    <div class="left-menu">
+        {% if request.user.is_superuser %}
+        <div class="box">
+            <a href="{% url 'adminPage' %}" {% if request.path == '/adminPage/' %} class="active" {% endif %}>
+                <i class="fa fa-users"></i>
+                Users
+            </a>
+            <a href="{% url 'newInvestment' %}" {% if request.path == '/newInvestment/' %} class="active" {% endif %}>
+                <i class="fa fa-cubes"></i>
+                Investments
+            </a>
+            <a href="{% url 'newLoan' %}" {% if request.path == '/newLoan/' %} class="active" {% endif %}>
+                <i class="fa fa-money"></i>
+                Loans
+            </a>
+            <a href="{% url 'adminPassword' %}" {% if request.path == '/adminPassword/' %} class="active" {% endif %}>
+                <i class="fa fa-lock"></i>
+                Settings
+            </a>
+            <a href="{% url 'login' %}">
+                <i class="fa fa-power-off"></i>
+                Logout
+            </a>
+        </div>
+        {% else %}
+        <div class="box">
+            <a href="{% url 'dashboard' %}" {% if request.path == '/dashboard/' %} class="active" {% endif %}>
+                <i class="fa fa-home"></i>
+                Dashboard
+            </a>
+            <a href="{% url 'withdraw' %}" {% if request.path == '/withdraw/' %} class="active" {% endif %}>
+                <i class="fa fa-exchange"></i>
+                Withdraw Money
+            </a>
+            <a href="{% url 'history' %}" {% if request.path == '/history/' %} class="active" {% endif %}>
+                <i class="fa fa-clock-o"></i>
+                Transaction History
+            </a>
+            <a href="{% url 'allInvestment' %}" {% if request.path == '/allInvestment/' %} class="active" {% endif %}>
+                <i class="fa fa-cubes"></i>
+                Investment
+            </a>
+            <a href="{% url 'investment' %}" {% if request.path == '/investment/' %} class="active" {% endif %}>
+                <i class="fa fa-arrow-up"></i>
+                My Investments
+            </a>
+            <a href="{% url 'loanApplication' %}" {% if request.path == '/loanApplication/' %} class="active" {% endif %}>
+                <i class="fa fa-money"></i>
+                Loan Application
+            </a>
+            <a href="{% url 'loan' %}" {% if request.path == '/loan/' %} class="active" {% endif %}>
+                <i class="fa fa-money"></i>
+                Loan History
+            </a>
+            <a href="{% url 'profile' %}" {% if request.path == '/profile/' %} class="active" {% endif %}>
+                <i class="fa fa-user"></i>
+                Profile
+            </a>
+            <a href="{% url 'setting' %}" {% if request.path == '/setting/' %} class="active" {% endif %}>
+                <i class="fa fa-lock"></i>
+                Setting
+            </a>
+            <a href="{% url 'kyc' %}" {% if request.path == '/kyc/' %} class="active" {% endif %}>
+                <i class="fa fa-check"></i>
+                KYC
+            </a>
+            <a href="{% url 'login' %}">
+                <i class="fa fa-power-off"></i>
+                Logout
+            </a>
+        </div>
+        {% endif %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="info-m">
+            <h5>Info</h5>
+            <p>
+                {{ message }}
+            </p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
